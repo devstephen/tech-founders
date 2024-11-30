@@ -1,4 +1,9 @@
 import { Router } from 'express'
+import {
+  getAllFounders,
+  getOneFounder,
+  addNewFounder,
+} from '../controllers/founders.controller.js'
 
 const foundersRouter = Router()
 

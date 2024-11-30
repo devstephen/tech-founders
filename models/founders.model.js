@@ -1,4 +1,4 @@
-import { Schema, Model } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import Joi from 'joi'
 
 const founderSchema = new Schema({
@@ -23,11 +23,11 @@ const founderSchema = new Schema({
   },
 })
 
-export const Founder = Model('founder', founderSchema)
+export const Founder = model('founder', founderSchema)
 
 export const validateFounder = (founder) => {
   const schema = Joi.object({
-    id: Joi.string().replace(),
+    id: Joi.string().required(),
     name: Joi.string().min(5).max(50).required(),
     company: Joi.string().min(5).required(),
     description: Joi.string().min(10).required(),
