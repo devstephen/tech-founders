@@ -4,13 +4,13 @@
 Clone the project
 
 ```bash
-  git clone https://github.com/devstephen/founders.git
+  git clone https://github.com/devstephen/tech-founders
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd tech-founders
 ```
 
 Install dependencies
