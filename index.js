@@ -1,8 +1,12 @@
 import express from 'express'
 import foundersRouter from './routes/founders.router.js'
+import 'dotenv/config'
+import main from './db/db.js'
 
 const app = express()
 const PORT = 3000
+
+main()
 
 app.use(express.json())
 
