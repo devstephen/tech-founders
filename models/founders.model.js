@@ -27,7 +27,7 @@ export const Founder = model('founder', founderSchema)
 
 export const validateFounder = (founder) => {
   const schema = Joi.object({
-    id: Joi.string().required(),
+    id: Joi.string(),
     name: Joi.string().min(5).max(50).required(),
     company: Joi.string().min(5).required(),
     description: Joi.string().min(10).required(),

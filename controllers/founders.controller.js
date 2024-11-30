@@ -5,9 +5,10 @@ export async function getAllFounders(req, res) {
     const founders = await Founder.find()
     res.json(founders)
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: 'Failed to fetch founders. Please try again' })
+    res.status(500).json({
+      error: 'Failed to fetch founders. Please try again',
+      message: error.message,
+    })
   }
 }
 
@@ -16,14 +17,16 @@ export async function getOneFounder(req, res) {
     const { id } = req.params
     const founderId = String(id)
     console.log(req.params)
-    const founder = await Founder.findOne({ founderId })
+    const founder = await Founder.findById(founderId)
 
     if (!founder) {
       return res.status(404).json({ error: 'Founder does not exist' })
     }
     res.json(founder)
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch founder' })
+    res
+      .status(500)
+      .json({ error: 'Failed to fetch founder', message: error.message })
   }
 }
 
@@ -35,10 +38,15 @@ export async function addNewFounder(req, res) {
   }
 
   try {
+    const { name, company, description } = req.body
     const newFounder = new Founder({ name, company, description })
-    await newFounder.save()
-    res.status(201).json(newFounder)
+    const result = await newFounder.save()
+    console.log(newFounder)
+
+    res.status(201).json(result)
   } catch (error) {
-    res.status(500).json({ error: 'Failed to create new founder' })
+    res
+      .status(500)
+      .json({ error: 'Failed to create new founder', message: error.message })
   }
 }
